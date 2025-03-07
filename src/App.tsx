@@ -1,6 +1,37 @@
 import "./App.css";
+import Map from "react-map-gl/maplibre";
 import "maplibre-gl/dist/maplibre-gl.css";
-import {Map} from "@vis.gl/react-maplibre";
+
+// https://maplibre.org/maplibre-gl-js/docs/examples/3d-terrain/
+// const MAP_STYLE: MapLib = {
+//   version: 8,
+//   sources: {
+//     osm: {
+//       type: "raster",
+//       tiles: ["https://a.tile.openstreetmap.org/{z}/{x}/{y}.png"],
+//       tileSize: 256,
+//       attribution: "&copy; OpenStreetMap Contributors",
+//       maxzoom: 19,
+//     },
+//     terrainSource: {
+//       type: "raster-dem",
+//       url: "https://demotiles.maplibre.org/terrain-tiles/tiles.json",
+//       tileSize: 256,
+//     },
+//   },
+//   layers: [
+//     {
+//       id: "osm",
+//       type: "raster",
+//       source: "osm",
+//     },
+//   ],
+//   terrain: {
+//     source: "terrainSource",
+//     exaggeration: 1,
+//   },
+//   sky: {},
+// };
 
 function App() {
   return (
