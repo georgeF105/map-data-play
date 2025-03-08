@@ -36,6 +36,17 @@ const MAP_STYLE: StyleSpecification = {
         "hillshade-accent-color": "#888888",
       },
     },
+    {
+      id: "terrain-3d",
+      type: "hillshade",
+      source: "terrainSource",
+      paint: {
+        "hillshade-exaggeration": 1,
+        "hillshade-shadow-color": "#000000",
+        "hillshade-highlight-color": "#FFFFFF",
+        "hillshade-accent-color": "#888888",
+      },
+    },
   ],
   terrain: {
     source: "terrainSource",
