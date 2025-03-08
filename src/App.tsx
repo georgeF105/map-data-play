@@ -15,8 +15,7 @@ const MAP_STYLE: StyleSpecification = {
     },
     terrainSource: {
       type: "raster-dem",
-      url: "https://demotiles.maplibre.org/terrain-tiles/tiles.json",
-      tileSize: 256,
+      url: "https://api.maptiler.com/tiles/terrain-rgb/tiles.json?key=Y2QwhDtY02fO9r6p6loF",
     },
   },
   layers: [
@@ -35,7 +34,6 @@ const MAP_STYLE: StyleSpecification = {
 
 function App() {
   return (
-    // <div className="flex min-h-screen items-center justify-center">
     <Map
       initialViewState={{
         longitude: -100,
@@ -43,7 +41,6 @@ function App() {
         zoom: 3.5,
       }}
       style={{width: "100%", height: "100vh"}}
-      // mapStyle="https://demotiles.maplibre.org/style.json"
       mapStyle={MAP_STYLE}
     />
   );
