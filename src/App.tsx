@@ -25,6 +25,17 @@ const MAP_STYLE: StyleSpecification = {
       type: "raster",
       source: "osm",
     },
+    {
+      id: "terrain",
+      type: "hillshade",
+      source: "terrainSource",
+      paint: {
+        "hillshade-exaggeration": 0.5,
+        "hillshade-shadow-color": "#000000",
+        "hillshade-highlight-color": "#FFFFFF",
+        "hillshade-accent-color": "#888888",
+      },
+    },
   ],
   terrain: {
     source: "terrainSource",
