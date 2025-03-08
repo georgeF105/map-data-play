@@ -15,8 +15,7 @@ const MAP_STYLE: StyleSpecification = {
     },
     terrainSource: {
       type: "raster-dem",
-      url: "https://demotiles.maplibre.org/terrain-tiles/tiles.json",
-      tileSize: 256,
+      url: "https://api.maptiler.com/tiles/terrain-rgb/tiles.json?key=Y2QwhDtY02fO9r6p6loF",
     },
   },
   layers: [
@@ -24,28 +23,6 @@ const MAP_STYLE: StyleSpecification = {
       id: "osm",
       type: "raster",
       source: "osm",
-    },
-    {
-      id: "terrain",
-      type: "hillshade",
-      source: "terrainSource",
-      paint: {
-        "hillshade-exaggeration": 0.5,
-        "hillshade-shadow-color": "#000000",
-        "hillshade-highlight-color": "#FFFFFF",
-        "hillshade-accent-color": "#888888",
-      },
-    },
-    {
-      id: "terrain-3d",
-      type: "hillshade",
-      source: "terrainSource",
-      paint: {
-        "hillshade-exaggeration": 1,
-        "hillshade-shadow-color": "#000000",
-        "hillshade-highlight-color": "#FFFFFF",
-        "hillshade-accent-color": "#888888",
-      },
     },
   ],
   terrain: {
@@ -57,7 +34,6 @@ const MAP_STYLE: StyleSpecification = {
 
 function App() {
   return (
-    // <div className="flex min-h-screen items-center justify-center">
     <Map
       initialViewState={{
         longitude: -100,
@@ -65,7 +41,6 @@ function App() {
         zoom: 3.5,
       }}
       style={{width: "100%", height: "100vh"}}
-      // mapStyle="https://demotiles.maplibre.org/style.json"
       mapStyle={MAP_STYLE}
     />
   );
