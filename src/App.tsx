@@ -1,10 +1,13 @@
 import "./App.css";
 import AppMap from "./components/AppMap/AppMap";
+import LocalGeoJson from "./components/LocalGeoJson/LocalGeoJson";
 
 function App() {
   return (
     <>
-      <AppMap />
+      <AppMap>
+        <LocalGeoJson />
+      </AppMap>
     </>
   );
 }

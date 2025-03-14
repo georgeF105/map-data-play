@@ -1,16 +1,18 @@
-import {FC, useState} from "react";
+import {FC, ReactNode, useState} from "react";
 import Map, {MapProps, StyleSpecification} from "react-map-gl/maplibre";
 import "maplibre-gl/dist/maplibre-gl.css";
 import {useAppMapContext, AppMapContext} from "./AppMapContext";
 
-const AppMap: FC = () => {
+const AppMap: FC<{children: ReactNode}> = ({children}) => {
   const {mapState, setMapState} = useAppMapContext();
   return (
     <Map
       {...mapState}
       style={{width: "100%", height: "100vh"}}
       onMove={(evt) => setMapState((prev) => ({...prev, ...evt.viewState}))}
-    />
+    >
+      {children}
+    </Map>
   );
 };
 
@@ -52,7 +54,7 @@ const MAP_STYLE: StyleSpecification = {
   sky: {},
 };
 
-const AppMapWrapper: FC = () => {
+const AppMapWrapper: FC<{children: ReactNode}> = (props) => {
   const [mapState, setMapState] = useState<MapProps>({
     mapStyle: MAP_STYLE,
     ...INITIAL_VIEW_STATE,
@@ -64,7 +66,7 @@ const AppMapWrapper: FC = () => {
         setMapState,
       }}
     >
-      <AppMap />
+      <AppMap {...props} />
     </AppMapContext.Provider>
   );
 };
