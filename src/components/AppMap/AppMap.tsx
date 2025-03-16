@@ -45,6 +45,9 @@ const MAP_STYLE: StyleSpecification = {
       id: "osm",
       type: "raster",
       source: "osm",
+      paint: {
+        "raster-opacity": 0.5, // Value between 0 and 1
+      },
     },
   ],
   terrain: {
