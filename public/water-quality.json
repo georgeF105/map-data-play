@@ -1,0 +1,53 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [174.7797, -41.2751]
+      },
+      "properties": {
+        "siteName": "Te Aro Stream",
+        "status": "good",
+        "latestReading": "7.8 pH, 5.2 mg/L O2"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [174.7779, -41.2735]
+      },
+      "properties": {
+        "siteName": "Waterfront Outlet",
+        "status": "fair",
+        "latestReading": "6.9 pH, 4.1 mg/L O2"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [174.7821, -41.2768]
+      },
+      "properties": {
+        "siteName": "Harbor Buoy",
+        "status": "poor",
+        "latestReading": "6.4 pH, 2.8 mg/L O2"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [174.7804, -41.2742]
+      },
+      "properties": {
+        "siteName": "Wharf Monitoring",
+        "status": "good",
+        "latestReading": "7.6 pH, 5.8 mg/L O2"
+      }
+    }
+  ]
+}
