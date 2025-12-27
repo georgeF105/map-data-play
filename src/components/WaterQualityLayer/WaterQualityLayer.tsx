@@ -6,7 +6,7 @@ import {
   WaterQualityCollection,
   WaterQualityFeature,
   fetchWaterQuality,
-} from "../../services/waterQuality";
+} from "../../services/waterQualityService";
 
 const WATER_QUALITY_LAYER_ID = "water-quality-layer";
 
