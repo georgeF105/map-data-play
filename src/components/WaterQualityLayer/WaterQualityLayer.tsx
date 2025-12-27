@@ -1,30 +1,14 @@
-import {Feature, FeatureCollection, Point} from "geojson";
 import {Layer, LayerProps, MapLayerMouseEvent, Popup, Source} from "react-map-gl/maplibre";
 import {useEffect, useMemo, useState} from "react";
 
 import {useAppMapContext} from "../AppMap/AppMapContext";
+import {
+  WaterQualityCollection,
+  WaterQualityFeature,
+  fetchWaterQuality,
+} from "../../services/waterQuality";
 
 const WATER_QUALITY_LAYER_ID = "water-quality-layer";
-
-export type WaterQualityProperties = {
-  siteName: string;
-  status: "good" | "fair" | "poor";
-  latestReading: string;
-};
-
-type WaterQualityFeature = Feature<Point, WaterQualityProperties>;
-
-type WaterQualityCollection = FeatureCollection<Point, WaterQualityProperties>;
-
-const loadWaterQuality = async (): Promise<WaterQualityCollection> => {
-  const response = await fetch("/water-quality.json");
-  if (!response.ok) {
-    throw new Error(`Failed to fetch water quality data: ${response.statusText}`);
-  }
-
-  const json = (await response.json()) as WaterQualityCollection;
-  return json;
-};
 
 const WaterQualityLayer = () => {
   const {setMapState} = useAppMapContext();
@@ -42,7 +26,7 @@ const WaterQualityLayer = () => {
       setIsLoading(true);
       setError(null);
       try {
-        const featureCollection = await loadWaterQuality();
+        const featureCollection = await fetchWaterQuality();
         setData(featureCollection);
       } catch (err) {
         const message = err instanceof Error ? err.message : "Unknown error";
