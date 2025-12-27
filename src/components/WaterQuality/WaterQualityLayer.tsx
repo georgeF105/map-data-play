@@ -8,6 +8,7 @@ import {
   clearWaterQualityCache,
   fetchWaterQualityFeatures,
   getWaterQualityState,
+  WATER_QUALITY_API_URL,
 } from "../../services/waterQuality";
 
 const STATUS_COLORS: Record<string, string> = {
@@ -89,6 +90,7 @@ const WaterQualityLayer: FC = () => {
   const [fetchState, setFetchState] = useState<WaterQualityFetchState>(
     getWaterQualityState()
   );
+  const [showDebug, setShowDebug] = useState(false);
 
   const fetchData = useCallback(async () => {
     setFetchState({status: "loading"});
@@ -155,6 +157,16 @@ const WaterQualityLayer: FC = () => {
     return "Ready to load water quality sites";
   }, [fetchState]);
 
+  const errorDetails = useMemo(() => {
+    if (fetchState.status !== "error") return null;
+
+    const stack = fetchState.error.stack?.split("\n").slice(0, 3).join("\n");
+    return {
+      message: fetchState.error.message,
+      stack,
+    };
+  }, [fetchState]);
+
   return (
     <>
       <div className="absolute top-2 left-2 max-w-xs rounded bg-white/90 p-3 shadow-md space-y-2 text-sm">
@@ -198,6 +210,47 @@ const WaterQualityLayer: FC = () => {
               Clear cache
             </button>
           </div>
+        </div>
+        <div className="rounded border border-slate-200 bg-slate-50 p-2 text-[11px] leading-relaxed text-slate-700">
+          <button
+            type="button"
+            className="flex w-full items-center justify-between font-medium"
+            onClick={() => setShowDebug((value) => !value)}
+          >
+            <span>Debug details</span>
+            <span aria-hidden="true">{showDebug ? "−" : "+"}</span>
+          </button>
+          {showDebug && (
+            <div className="mt-1 space-y-1 break-words">
+              <div>
+                <div className="text-[10px] uppercase tracking-wide text-slate-500">
+                  API URL
+                </div>
+                <code className="block break-all rounded bg-white px-1 py-0.5 text-[11px]">
+                  {WATER_QUALITY_API_URL}
+                </code>
+              </div>
+              <div className="flex flex-wrap gap-2">
+                <span className="rounded bg-white px-1 py-0.5">Status: {fetchState.status}</span>
+                {fetchState.status === "success" && (
+                  <span className="rounded bg-white px-1 py-0.5">
+                    Features: {fetchState.data.features.length}
+                  </span>
+                )}
+              </div>
+              {errorDetails && (
+                <div className="space-y-1 rounded border border-red-200 bg-red-50 p-2 text-[11px] text-red-700">
+                  <div className="font-semibold">Error details</div>
+                  <div>{errorDetails.message}</div>
+                  {errorDetails.stack && (
+                    <pre className="max-h-24 overflow-auto whitespace-pre-wrap text-[10px]">
+                      {errorDetails.stack}
+                    </pre>
+                  )}
+                </div>
+              )}
+            </div>
+          )}
         </div>
         <a
           className="block text-xs text-blue-700 underline"

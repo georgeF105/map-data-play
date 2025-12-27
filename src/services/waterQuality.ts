@@ -3,7 +3,7 @@ import {Feature, FeatureCollection, Geometry} from "geojson";
 const DEFAULT_WATER_QUALITY_API_URL =
   "https://services7.arcgis.com/7OoTWJg4unfXxhcT/arcgis/rest/services/Wellington_Water_Quality/FeatureServer/0/query?where=1%3D1&outFields=*&f=json";
 
-const WATER_QUALITY_API_URL =
+export const WATER_QUALITY_API_URL =
   import.meta.env.VITE_WATER_QUALITY_API_URL ?? DEFAULT_WATER_QUALITY_API_URL;
 
 type EsriAttributes = Record<string, string | number | null | undefined>;
